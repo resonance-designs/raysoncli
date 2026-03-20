@@ -35,6 +35,7 @@ jobs:
         uses: goreleaser/goreleaser-action@v6
         with:
           version: latest
+          install-only: true
 
       - name: Build all platform artifacts
         run: npm run release:dist
