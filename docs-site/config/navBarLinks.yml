@@ -1,0 +1,29 @@
+dropdown: true
+dropdownLabel: "Explore"
+links:
+  - label: Docs Home
+    href: /docs/intro
+
+  - label: Projects
+    href: /demos/projects
+
+  - label: Portfolio
+    href: /demos/portfolio
+
+  - label: CV
+    href: /demos/cv
+
+  - label: Badges
+    href: /demos/badges
+
+  - label: GitHub
+    href: https://github.com/resonance-designs/rayson
+    position: right
+
+  - label: Releases
+    href: https://github.com/resonance-designs/rayson/releases
+    position: right
+
+  - label: Actions
+    href: https://github.com/resonance-designs/rayson/actions
+    position: right

@@ -1,0 +1,64 @@
+header:
+  title: RaySon Portfolio
+  subtitle: CLI automation, documentation, and release engineering
+
+technologies:
+  - name: CLI Platform
+    subCategories:
+      - name: Go
+      - name: Cobra
+      - name: Cross-platform build targets
+
+  - name: Automation
+    subCategories:
+      - name: PowerShell
+      - name: Bash
+      - name: Data export workflows
+
+  - name: Release Engineering
+    subCategories:
+      - name: GitHub Actions
+      - name: GoReleaser
+      - name: Artifact packaging
+
+  - name: Documentation
+    subCategories:
+      - name: Docusaurus
+      - name: Markdown
+      - name: GitHub Pages
+
+projects:
+  - category: CLI
+    icon: terminal
+    description: Core RaySon command surface and script orchestration
+
+  - category: Automation
+    icon: bolt
+    description: Finance, environment bootstrap, and infrastructure helper scripts
+
+  - category: Docs
+    icon: book
+    description: Maintainer-oriented docs, onboarding, and release runbooks
+
+  - category: CI/CD
+    icon: cogs
+    description: Snapshot builds, tagged publishing, and deployment automation
+
+stats:
+  - number: 1
+    label: Unified CLI
+
+  - number: 4+
+    label: Command areas
+
+  - number: 3
+    label: Core workflows
+
+  - number: 6
+    label: Release targets (win/mac/linux)
+
+seo:
+  title: RaySon CLI Portfolio
+  description: >
+    RaySon is a Go CLI focused on automation, docs, and release workflows with
+    a branch-driven maintainer process and cross-platform artifact outputs.

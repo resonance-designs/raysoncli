@@ -1,0 +1,14 @@
+repo: resonance-designs/rayson
+# Set these from giscus.app after enabling GitHub Discussions on the repo.
+repoId: REPLACE_WITH_GISCUS_REPO_ID
+category: General
+categoryId: REPLACE_WITH_GISCUS_CATEGORY_ID
+mapping: pathname
+reactionsEnabled: true
+emitMetadata: false
+inputPosition: bottom
+lang: en
+loading: lazy
+theme:
+  light: light
+  dark: dark

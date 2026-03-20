@@ -120,9 +120,26 @@ RaySon is open to community and internal contributions. We keep this repo friend
 
 ### Release and maintenance
 
-- Maintainers only: use `npm run version:sync` when preparing a release.
-- Maintainers only: use `npm run release:dist` to produce release artifacts.
-- `npm run version` prints current CLI version metadata.
+Maintainer flow is branch-driven:
+
+1. Build features on short-lived branches (from `master`) and merge into `master` when ready.
+2. When a release candidate is ready, merge `master` into `release`.
+3. A push to `release` triggers CI workflows:
+- `.github/workflows/release.yml` builds multi-platform snapshot artifacts and uploads them to the workflow run.
+- `.github/workflows/docs-site.yml` builds and deploys docs to GitHub Pages.
+4. Validate artifacts and docs from that `release` run.
+5. Publish an official release by creating and pushing a semver tag from `release` (for example `v0.1.4`).
+6. The tag triggers `.github/workflows/publish.yml`, which syncs version from the tag and publishes a GitHub Release with artifacts.
+
+Version preparation:
+
+- Update version source-of-truth: `node scripts/bump-version.js 0.1.4` (or omit value to auto-increment patch).
+- Commit and merge through the normal flow before tagging.
+
+Useful maintainer commands:
+
+- `npm run release:dist` for local snapshot-style artifact builds.
+- `go run ./cmd/rayson version` to inspect runtime version metadata locally.
 
 ### Support and questions
 

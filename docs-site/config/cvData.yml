@@ -1,0 +1,85 @@
+header:
+  title: RaySon Maintainer Profile
+  email: info@resonancedesigns.dev
+  phone: Available by email
+  links:
+    - label: Repository
+      href: https://github.com/resonance-designs/rayson
+    - label: Documentation
+      href: https://resonance-designs.github.io/rayson/
+
+about:
+  title: About This Project
+  body: >
+    RaySon is built as a practical automation CLI with a clear migration path from
+    script wrappers to native Go commands. The project emphasizes maintainability,
+    release reliability, and contributor-friendly documentation.
+
+badges:
+  - alt: Go
+    src: https://img.shields.io/badge/Go-1.22+-00ADD8?style=for-the-badge&logo=go&logoColor=white
+  - alt: PowerShell
+    src: https://img.shields.io/badge/PowerShell-Automation-5391FE?style=for-the-badge&logo=powershell&logoColor=white
+  - alt: GitHub Actions
+    src: https://img.shields.io/badge/GitHub_Actions-CI/CD-2088FF?style=for-the-badge&logo=github-actions&logoColor=white
+  - alt: Docusaurus
+    src: https://img.shields.io/badge/Docusaurus-Docs-2E8555?style=for-the-badge&logo=docusaurus&logoColor=white
+  - alt: Smartsheet
+    src: https://img.shields.io/badge/Smartsheet-Export-0F8B8D?style=for-the-badge
+
+chips:
+  - Automation
+  - CLI
+  - Documentation
+  - CI/CD
+  - Release Engineering
+  - Developer Experience
+
+timelineTitle: Project Timeline
+roles:
+  - company: Resonance Designs
+    title: RaySon Project Maintainers
+    period: 2026 - Present
+    location: Remote
+    icon: faRocket
+    website: https://github.com/resonance-designs/rayson
+    summary: >
+      Building RaySon as a practical CLI for script execution, documentation, and
+      release automation with a branch-based maintainer workflow.
+    achievements:
+      - Bootstrapped Go-based RaySon CLI with command groups for finance, WSL, and Mongo utilities
+      - Added source-controlled versioning plus sync tooling for project metadata
+      - Implemented snapshot and tag-based release workflows with GoReleaser
+      - Added docs deployment pipeline and maintainer runbook coverage
+    tech: Go, PowerShell, Bash, GitHub Actions, Docusaurus, Node.js
+
+educationTitle: Learning and Practices
+education:
+  - school: Contributor Onboarding
+    degree: Docs-first onboarding and maintainers guide
+    details: README and docs pages cover development, release, and deployment workflows
+  - school: Release Operations
+    degree: Branch and tag governance
+    details: release branch for candidate builds, semver tags for published releases
+
+projectsTitle: Current Project Areas
+projects:
+  - title: Finance Export Commands
+    link: https://github.com/resonance-designs/rayson/tree/master/scripts/scripts/fin-automation
+    description: Shopping history and Smartsheet-oriented data export flows
+    tech: PowerShell, CSV, Smartsheet
+    year: 2026
+
+  - title: Release Automation
+    link: https://github.com/resonance-designs/rayson/tree/master/.github/workflows
+    description: Snapshot and publish workflows for cross-platform binaries
+    tech: GitHub Actions, GoReleaser, Go
+    year: 2026
+
+  - title: Docs Platform
+    link: https://resonance-designs.github.io/rayson/
+    description: Docusaurus docs for maintainers and contributors
+    tech: Docusaurus, Markdown, GitHub Pages
+    year: 2026
+
+quote: Build practical tools, automate repeatable work, and document the path for the next maintainer.

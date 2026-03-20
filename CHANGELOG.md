@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.1.4] - 2026-03-20
+
+### Changed
+
+- Updated GitHub Actions workflows for current release/docs flow:
+  - modernized action references and Node 24 action-runtime opt-in
+  - corrected docs deployment to official Pages flow (`configure-pages` + `upload-pages-artifact` + `deploy-pages`)
+- Fixed docs-site dependency/tooling compatibility:
+  - replaced deprecated `react-beautiful-dnd` with `@hello-pangea/dnd`
+  - removed Linux-only `@rollup/rollup-linux-x64-gnu` hard dependency
+  - converted docs-site script commands from `pnpm` calls to npm-compatible equivalents
+- Tailored docs-site core configuration from template defaults to RaySon project metadata and repository links.
+- Switched docs-site default theme to `sunset` and disabled theme switching in navigation.
+
+### Added
+
+- Added new RaySon-focused docs pages:
+  - `docs-site/docs/intro.md`
+  - `docs-site/docs/commands.md`
+  - `docs-site/docs/release-flow.md`
+  - `docs-site/docs/project-structure.md`
+- Added a `/demos` index page at `docs-site/src/pages/demos/index.tsx` to eliminate dead demo-root links.
+
+### Removed
+
+- Removed template-only docs content outside the retained RaySon docs scope:
+  - PRD pages
+  - `core-systems/*`
+  - `guides/*`
+  - `pull-requests/*`
+  - extra getting-started pages not used by RaySon (`examples`, `real-world-examples`)
+
 ## [0.1.3] - 2026-03-20
 
 ### Changed
