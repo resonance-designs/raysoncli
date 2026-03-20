@@ -1,13 +1,36 @@
 # Changelog
 
+## [0.1.3] - 2026-03-20
+
+### Changed
+
+- Hardened `scripts/bump-version.js` to fail the run if any planned target cannot be updated (missing file, missing badge, non-semver version), logging each skip as an error and preventing partial writes.
+- Updated `scripts/capture-build-timings.js` replacement logic to detect the next exact `# Build Timings` section boundary (instead of any heading marker), preventing premature truncation by nested headings.
+- Updated Docusaurus config metadata/links for the project (`docs-site/docusaurus.config.js`), including Rayson title/tagline/site URL, repo org/project, edit links, footer links, copyright, and base URL for Pages.
+- Changed local build output to a platform-aware binary name via `scripts/build.js` (`rayson.exe` on Windows, `rayson` elsewhere) and wired `rayson:build` to this script.
+- Added `bin/` to `.gitignore` to avoid committing built executables.
+
+### Added
+
+- Added release tooling scaffolding:
+  - `.goreleaser.yaml`
+  - `scripts/release.js`
+  - `scripts/Makefile`
+  - `.github/workflows/release.yml` for merge builds on `release` branch
+  - `.github/workflows/publish.yml` for tag-published releases
+  - `.github/workflows/docs-site.yml` for Docusaurus GitHub Pages deployment
+- Added npm scripts in `package.json` for release flows:
+  - `release:dist`
+  - `release`
+
 ## [0.1.2] - 2026-03-20
 
 ### Changed
 
 - Reworked `scripts/bump-version.js` to plan version updates first (Go version, package versions, README badge) and apply file writes only after all validation passes.
 - Updated docs-site metadata and repository links in `docs-site/docusaurus.config.js`:
-  - Set Rayson-specific title/tagline/url and GitHub org/project values.
-  - Updated edit links and footer GitHub links to the Rayson repository.
+  - Set RaySon-specific title/tagline/url and GitHub org/project values.
+  - Updated edit links and footer GitHub links to the RaySon repository.
 - Updated `scripts/capture-build-timings.js` to:
   - Preserve content after existing `# Build Timings` section when regenerating timings.
   - Emit captured `stdout` and `stderr` output when `go test` fails before exiting.
