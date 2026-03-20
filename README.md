@@ -1,6 +1,6 @@
 # RaySon CLI
 
-[![Static Badge](https://img.shields.io/badge/Version-0.1.3-orange)](https://github.com/resonance-designs/rayson)
+[![Static Badge](https://img.shields.io/badge/Version-0.1.4-orange)](https://github.com/resonance-designs/rayson)
 [![Docs](https://img.shields.io/badge/Docs-GitHub%20Pages-2ea44f)](https://resonance-designs.github.io/rayson/)
 [![Build](https://img.shields.io/github/actions/workflow/status/resonance-designs/rayson/.github/workflows/release.yml?branch=release)](https://github.com/resonance-designs/rayson/actions/workflows/release.yml)
 [![Release](https://img.shields.io/github/v/release/resonance-designs/rayson)](https://github.com/resonance-designs/rayson/releases)

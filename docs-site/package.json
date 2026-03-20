@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-template",
-  "version": "1.0.0",
+  "version": "0.1.4",
   "description": "A comprehensive Docusaurus 3.8.1 template with TypeScript, advanced theming, commenting system, and automated build processes",
   "private": false,
   "license": "MIT",
