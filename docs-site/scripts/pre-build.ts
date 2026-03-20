@@ -73,6 +73,7 @@ const THEMES_DIR = path.join(__dirname, '../static/themes');
 const PAGES_DIR = path.join(__dirname, '../src/pages');
 const CONFIG_DIR = path.join(__dirname, '../config');
 const DATA_DIR = path.join(__dirname, '../data');
+const DOCS_SITE_ROOT = path.join(__dirname, '..');
 const THEMES_CONFIG: string = path.join(__dirname, '../data/themes.json');
 const NAVBAR_CONFIG: string = path.join(__dirname, '../data/navBarLinks.json');
 
@@ -205,7 +206,8 @@ export class PreBuild {
             generateNavBarForPages: false,
             overwriteExistingFiles: false,
             projectRoot: '',
-            defaultTheme: 'default'
+            defaultTheme: 'default',
+            syncFileMappings: []
           }
         };
 
@@ -257,7 +259,7 @@ export class PreBuild {
       );
 
       try {
-        const minimalConfig = { preBuild: {} };
+        const minimalConfig = { preBuild: { syncFileMappings: [] } };
         const jsonConfigPath = path.join(DATA_DIR, 'globalConfig.json');
 
         if (!fs.existsSync(DATA_DIR)) {
@@ -500,6 +502,76 @@ export class PreBuild {
   }
 
   /**
+   * Synchronizes explicitly mapped files from project root to docs-site targets.
+   *
+   * Useful for keeping selected documentation files in sync, such as:
+   * - README.md -> docs-site/src/pages/index.md
+   * - docs/CONTRIBUTING.md -> docs-site/docs/contributing.md
+   */
+  private syncMappedFiles(): void {
+    const mappings = this.config.preBuild?.syncFileMappings || [];
+
+    if (mappings.length === 0) {
+      return;
+    }
+
+    if (!this.config.preBuild?.projectRoot) {
+      console.warn(
+        '[WARN] syncFileMappings defined, but projectRoot is not configured'
+      );
+      return;
+    }
+
+    for (const mapping of mappings) {
+      if (!mapping?.source || !mapping?.destination) {
+        console.warn('[WARN] Skipping invalid sync mapping entry');
+        continue;
+      }
+
+      const sourcePath = path.resolve(
+        this.config.preBuild.projectRoot,
+        mapping.source
+      );
+      const destinationPath = path.resolve(DOCS_SITE_ROOT, mapping.destination);
+
+      if (!fs.existsSync(sourcePath)) {
+        console.warn(
+          `[WARN] Sync source not found, skipping: ${mapping.source}`
+        );
+        continue;
+      }
+
+      const destinationDir = path.dirname(destinationPath);
+      if (!fs.existsSync(destinationDir)) {
+        fs.mkdirSync(destinationDir, { recursive: true });
+      }
+
+      const destinationExists = fs.existsSync(destinationPath);
+      if (destinationExists && !this.config.preBuild?.overwriteExistingFiles) {
+        console.log(
+          `[INFO] Sync skipped (exists and overwrite disabled): ${mapping.destination}`
+        );
+        continue;
+      }
+
+      let content = fs.readFileSync(sourcePath, 'utf-8');
+      if (Array.isArray(mapping.replacements)) {
+        for (const replacement of mapping.replacements) {
+          if (!replacement?.find) {
+            continue;
+          }
+          content = content.split(replacement.find).join(replacement.replace);
+        }
+      }
+
+      fs.writeFileSync(destinationPath, content, 'utf-8');
+      console.log(
+        `[INFO] Synced ${mapping.source} --> ${mapping.destination}`
+      );
+    }
+  }
+
+  /**
    * Generates navigation bar configuration from markdown pages.
    *
    * Creates navigation links for all markdown files in the pages directory,
@@ -717,7 +789,8 @@ export class PreBuild {
         generateNavBarForPages: false,
         overwriteExistingFiles: false,
         projectRoot: '',
-        defaultTheme: 'default'
+        defaultTheme: 'default',
+        syncFileMappings: []
       },
       site: {
         title: 'Default Site',
@@ -756,6 +829,7 @@ export class PreBuild {
       console.log('[INFO] Starting Pre Build Process...');
 
       this.processYamlToJson();
+      this.syncMappedFiles();
       this.copyMarkdown();
       this.generateNavbar();
       this.generateThemeConfig();

@@ -6,6 +6,18 @@ preBuild:
   copyMarkdownFromProjectRoot: false
   generateNavBarForPages: false
   defaultTheme: sunset
+  syncFileMappings:
+    - source: README.md
+      destination: src/pages/index.md
+      replacements:
+        - find: (LICENSE)
+          replace: (https://github.com/resonance-designs/rayson/blob/master/LICENSE)
+        - find: (docs/CONTRIBUTING.md)
+          replace: (https://github.com/resonance-designs/rayson/blob/master/docs/CONTRIBUTING.md)
+    - source: docs/CONTRIBUTING.md
+      destination: docs/contributing.md
+    - source: CHANGELOG.md
+      destination: docs/CHANGELOG.md
 
 site:
   title: RaySon CLI Docs

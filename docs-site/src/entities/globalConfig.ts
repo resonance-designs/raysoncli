@@ -37,6 +37,28 @@ export interface PreBuildConfig {
 
   /** Default theme to use when no theme is selected */
   defaultTheme: string;
+
+  /** Optional explicit file sync mappings from repo files to docs-site targets */
+  syncFileMappings?: SyncFileMapping[];
+}
+
+export interface SyncFileMapping {
+  /** Source path relative to projectRoot (for example: README.md) */
+  source: string;
+
+  /** Destination path relative to docs-site directory (for example: docs/intro.md) */
+  destination: string;
+
+  /** Optional string replacements applied to file content after read */
+  replacements?: SyncReplacement[];
+}
+
+export interface SyncReplacement {
+  /** Exact string to find in the source content */
+  find: string;
+
+  /** Replacement string */
+  replace: string;
 }
 
 /**

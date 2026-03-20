@@ -13,6 +13,7 @@ Use this site for day-to-day CLI usage, contributor onboarding, and maintainer r
 - [RaySon Overview](/docs/intro)
 - [Quick Start](/docs/getting-started/quick-start)
 - [Command Reference](/docs/commands)
+- [Contributing](/docs/contributing)
 - [Release Flow](/docs/release-flow)
 
 ## Maintainer-oriented docs

@@ -39,6 +39,38 @@ git push origin v0.1.4
 
 4. The tag triggers `.github/workflows/publish.yml`, which publishes GitHub Release artifacts.
 
+## Command-line flow
+
+```powershell
+git checkout master
+git pull origin master
+
+# merge completed feature branch(es) into master (example)
+git merge feature/my-change
+git push origin master
+
+git checkout release
+git pull origin release
+git merge master
+git push origin release
+
+# after workflows pass
+git tag v0.1.4
+git push origin v0.1.4
+```
+
+## GitKraken flow
+
+1. Checkout `master` and pull latest.
+2. Merge each ready feature branch into `master`.
+3. Push `master`.
+4. Checkout `release` and pull latest.
+5. Merge `master` into `release`.
+6. Push `release` and verify `release.yml` + `docs-site.yml` are green.
+7. Create tag `vX.Y.Z` on current `release` commit.
+8. Push the tag.
+9. Confirm `.github/workflows/publish.yml` succeeds and creates the GitHub Release.
+
 ## Local maintainer checks
 
 ```powershell
