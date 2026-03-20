@@ -10,6 +10,8 @@ permissions:
   contents: write
   pages: write
   id-token: write
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 concurrency:
   group: docs-site
@@ -18,8 +20,6 @@ concurrency:
 jobs:
   docs:
     runs-on: ubuntu-latest
-    env:
-      GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -41,27 +41,19 @@ jobs:
         run: npm --prefix docs-site run build
 
       - name: Setup Pages
-        id: configure_pages_primary
+        id: configure_pages
         uses: actions/configure-pages@v5
         continue-on-error: true
         with:
           enablement: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Pages (fallback token)
-        id: configure_pages_fallback
-        if: steps.configure_pages_primary.outcome != 'success'
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-          token: ${{ env.GH_PAGES_TOKEN }}
+          token: ${{ github.token }}
 
       - name: Manual Pages setup required
-        if: steps.configure_pages_primary.outcome != 'success' && steps.configure_pages_fallback.outcome != 'success'
+        if: steps.configure_pages.outcome != 'success'
         run: |
-          echo "GitHub Pages could not be configured with this workflow token."
-          echo "Enable Pages for this repo once in Settings > Pages with Source: GitHub Actions,"
-          echo "or add a repo secret named GH_PAGES_TOKEN with admin-level permissions."
+          echo "GitHub Pages could not be configured with available credentials."
+          echo "Please enable Pages for the repository and ensure the workflow token has Pages write access."
+          echo "For Organizations, verify permissions/allowed actor policies for GITHUB_TOKEN."
           exit 1
 
       - name: Upload docs artifact
