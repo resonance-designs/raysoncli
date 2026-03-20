@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Rayson',
+  title: 'RaySon',
   tagline: 'CLI tooling for script-driven workflows',
   favicon: 'img/favicon.ico',
 
@@ -23,7 +23,7 @@ const config = {
   url: 'https://resonance-designs.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/rayson/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -83,9 +83,9 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'My Site',
+        title: 'RaySon',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'RaySon Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -146,7 +146,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Rayson. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} RaySon. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
