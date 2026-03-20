@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.1.2] - 2026-03-20
+
+### Changed
+
+- Reworked `scripts/bump-version.js` to plan version updates first (Go version, package versions, README badge) and apply file writes only after all validation passes.
+- Updated docs-site metadata and repository links in `docs-site/docusaurus.config.js`:
+  - Set Rayson-specific title/tagline/url and GitHub org/project values.
+  - Updated edit links and footer GitHub links to the Rayson repository.
+- Updated `scripts/capture-build-timings.js` to:
+  - Preserve content after existing `# Build Timings` section when regenerating timings.
+  - Emit captured `stdout` and `stderr` output when `go test` fails before exiting.
+
+### Added
+
+- Updated docs-site accessibility example in `docs-site/docs/tutorial-basics/markdown-features.mdx` by converting the interactive `Highlight` component from `<span>` to `<button type="button">`.
+- Anchored `scripts/print-handoff.js` file lookups to script-relative project root (`path.resolve(__dirname, "..")`) for stable execution across working directories.
+
 ## [0.1.1] - 2026-03-20
 
 ### Changed
