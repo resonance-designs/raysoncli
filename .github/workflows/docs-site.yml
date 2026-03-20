@@ -18,6 +18,8 @@ concurrency:
 jobs:
   docs:
     runs-on: ubuntu-latest
+    env:
+      GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -48,11 +50,11 @@ jobs:
 
       - name: Setup Pages (fallback token)
         id: configure_pages_fallback
-        if: steps.configure_pages_primary.outcome != 'success' && secrets.GH_PAGES_TOKEN != ''
+        if: steps.configure_pages_primary.outcome != 'success'
         uses: actions/configure-pages@v5
         with:
           enablement: true
-          token: ${{ secrets.GH_PAGES_TOKEN }}
+          token: ${{ env.GH_PAGES_TOKEN }}
 
       - name: Manual Pages setup required
         if: steps.configure_pages_primary.outcome != 'success' && steps.configure_pages_fallback.outcome != 'success'
