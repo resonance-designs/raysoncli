@@ -121,6 +121,8 @@ function main() {
   const checkResult = run("go", testArgs);
   if (checkResult.status !== 0) {
     console.error(`[timings] go test failed: ${checkResult.status}`);
+    console.error(`[timings] stdout:\n${String(checkResult.stdout || "")}`);
+    console.error(`[timings] stderr:\n${String(checkResult.stderr || "")}`);
     process.exit(checkResult.status || 1);
   }
 
@@ -160,7 +162,11 @@ function main() {
 
   const updated =
     sectionIndex >= 0
-      ? `${existing.slice(0, sectionIndex)}${sectionText}`
+      ? (() => {
+          const nextHeadingSearch = existing.indexOf("\n#", sectionIndex + sectionHeader.length);
+          const endOfOldSection = nextHeadingSearch >= 0 ? nextHeadingSearch : existing.length;
+          return `${existing.slice(0, sectionIndex)}${sectionText}${existing.slice(endOfOldSection)}`;
+        })()
       : `${existing}\n\n${sectionText}`;
 
   fs.writeFileSync(outPath, updated, "utf8");

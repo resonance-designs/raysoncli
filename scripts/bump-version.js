@@ -22,7 +22,7 @@ function writeFile(filePath, content) {
   fs.writeFileSync(filePath, content, "utf8");
 }
 
-function updateGoVersion(filePath, newVersion) {
+function planGoVersion(filePath, newVersion) {
   const versionFile = readFile(filePath);
   const versionMatch = /const\s+Version\s*=\s*"([^"]+)"/.exec(versionFile);
 
@@ -39,11 +39,15 @@ function updateGoVersion(filePath, newVersion) {
     /const\s+Version\s*=\s*"[^"]+"/,
     `const Version = "${newVersion}"`
   );
-  writeFile(filePath, updatedVersionFile);
-  return { updated: true, previous: currentVersion };
+  return {
+    filePath,
+    content: updatedVersionFile,
+    updated: true,
+    previous: currentVersion,
+  };
 }
 
-function updatePackageVersion(filePath, newVersion) {
+function planPackageVersion(filePath, newVersion) {
   if (!fs.existsSync(filePath)) {
     return { updated: false, reason: "missing" };
   }
@@ -63,9 +67,38 @@ function updatePackageVersion(filePath, newVersion) {
     return { updated: false, reason: "non-semver version" };
   }
 
-  parsed.version = newVersion;
-  writeFile(filePath, `${JSON.stringify(parsed, null, 2)}\n`);
-  return { updated: true, previous: current };
+  const updated = { ...parsed, version: newVersion };
+  return {
+    filePath,
+    content: `${JSON.stringify(updated, null, 2)}\n`,
+    updated: true,
+    previous: current,
+  };
+}
+
+function planReadmeVersion(filePath, newVersion) {
+  if (!fs.existsSync(filePath)) {
+    return { updated: false, reason: "missing" };
+  }
+
+  const readme = readFile(filePath);
+  const badgePattern = /!\[Static Badge\]\(https:\/\/img\.shields\.io\/badge\/Version-([^)]*)\)/;
+  const badgeMatch = badgePattern.exec(readme);
+  if (!badgeMatch) {
+    return { updated: false, reason: "badge-missing" };
+  }
+
+  const previous = badgeMatch[1];
+  const updatedContent = readme.replace(
+    badgePattern,
+    `![Static Badge](https://img.shields.io/badge/Version-${newVersion}-orange)`
+  );
+  return {
+    filePath,
+    content: updatedContent,
+    updated: true,
+    previous,
+  };
 }
 
 if (!fs.existsSync(versionPath)) {
@@ -91,31 +124,35 @@ if (!newVersion) {
   throw new Error(`Provided version '${newVersion}' must be in x.y.z format`);
 }
 
-const goUpdate = updateGoVersion(versionPath, newVersion, currentVersion);
+const plannedWrites = [];
+
+const goUpdate = planGoVersion(versionPath, newVersion);
 if (goUpdate.updated) {
-  console.log(`Updated cmd/version.go: ${goUpdate.previous} -> ${newVersion}`);
+  plannedWrites.push(goUpdate);
+  console.log(`Planned cmd/version.go: ${goUpdate.previous} -> ${newVersion}`);
 }
 
 for (const packagePath of packageTargets) {
-  const result = updatePackageVersion(packagePath, newVersion);
+  const result = planPackageVersion(packagePath, newVersion);
   if (result.updated) {
-    console.log(`Updated ${path.relative(projectRoot, packagePath)}: ${result.previous} -> ${newVersion}`);
+    plannedWrites.push(result);
+    console.log(`Planned ${path.relative(projectRoot, packagePath)}: ${result.previous} -> ${newVersion}`);
   } else if (result.reason) {
     console.warn(`Skipped ${path.relative(projectRoot, packagePath)}: ${result.reason}`);
   }
 }
 
-if (!fs.existsSync(readmePath)) {
+const readmeUpdate = planReadmeVersion(readmePath, newVersion);
+if (readmeUpdate.updated) {
+  plannedWrites.push(readmeUpdate);
+  const rel = path.relative(projectRoot, readmePath);
+  console.log(`Planned README badge: ${rel}`);
+} else if (readmeUpdate.reason === "missing") {
   console.warn(`README file not found at: ${readmePath}`);
-} else {
-  const readme = readFile(readmePath);
-  const badgePattern = /!\[Static Badge\]\(https:\/\/img\.shields\.io\/badge\/Version-[^)]*\)/;
-  const badge = `![Static Badge](https://img.shields.io/badge/Version-${newVersion}-orange)`;
+} else if (readmeUpdate.reason === "badge-missing") {
+  console.warn(`Version badge not found in ${readmePath}; skipped README update.`);
+}
 
-  if (!badgePattern.test(readme)) {
-    console.warn(`Version badge not found in ${readmePath}; skipped README update.`);
-  } else {
-    writeFile(readmePath, readme.replace(badgePattern, badge));
-    console.log(`Updated README badge: ${readmePath}`);
-  }
+for (const update of plannedWrites) {
+  writeFile(update.filePath, update.content);
 }

@@ -1,6 +1,6 @@
 # RaySon CLI
 
-![Static Badge](https://img.shields.io/badge/Version-0.1.1-orange)
+![Static Badge](https://img.shields.io/badge/Version-0.1.2-orange)
 
 RaySon is a Go CLI that wraps your existing automation scripts into one workflow entrypoint.
 

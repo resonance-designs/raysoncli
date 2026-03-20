@@ -111,7 +111,8 @@ This action is dangerous
 
 ```jsx
 export const Highlight = ({children, color}) => (
-  <span
+  <button
+    type="button"
     style={{
       backgroundColor: color,
       borderRadius: '20px',
@@ -123,7 +124,7 @@ export const Highlight = ({children, color}) => (
       alert(`You clicked the color ${color} with label ${children}`)
     }}>
     {children}
-  </span>
+  </button>
 );
 
 This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
@@ -132,7 +133,8 @@ This is <Highlight color="#1877F2">Facebook blue</Highlight> !
 ```
 
 export const Highlight = ({children, color}) => (
-  <span
+  <button
+    type="button"
     style={{
       backgroundColor: color,
       borderRadius: '20px',
@@ -144,7 +146,7 @@ export const Highlight = ({children, color}) => (
       alert(`You clicked the color ${color} with label ${children}`);
     }}>
     {children}
-  </span>
+  </button>
 );
 
 This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
