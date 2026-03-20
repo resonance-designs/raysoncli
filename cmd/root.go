@@ -21,7 +21,6 @@ var rootCmd = &cobra.Command{
 
 func scriptRootCandidates() []string {
 	return []string{
-		scriptRoot,
 		filepath.Join(".", "scripts"),
 		filepath.Join(".", "scripts", "scripts"),
 	}
@@ -40,11 +39,10 @@ func detectScriptRoot() string {
 	cwd, _ := os.Getwd()
 	cur := cwd
 	for i := 0; i < 6; i++ {
-		if dir := filepath.Join(cur, "scripts", "scripts"); isAutomationRoot(dir) {
-			return dir
-		}
-		if dir := filepath.Join(cur, "scripts"); isAutomationRoot(dir) {
-			return dir
+		for _, rel := range scriptRootCandidates() {
+			if dir := filepath.Join(cur, rel); isAutomationRoot(dir) {
+				return dir
+			}
 		}
 
 		if parent := filepath.Dir(cur); parent != cur {
