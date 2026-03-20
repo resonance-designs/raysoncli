@@ -125,6 +125,7 @@ if (!newVersion) {
 }
 
 const plannedWrites = [];
+const failures = [];
 
 const goUpdate = planGoVersion(versionPath, newVersion);
 if (goUpdate.updated) {
@@ -138,7 +139,7 @@ for (const packagePath of packageTargets) {
     plannedWrites.push(result);
     console.log(`Planned ${path.relative(projectRoot, packagePath)}: ${result.previous} -> ${newVersion}`);
   } else if (result.reason) {
-    console.warn(`Skipped ${path.relative(projectRoot, packagePath)}: ${result.reason}`);
+    failures.push(`Skipped ${path.relative(projectRoot, packagePath)}: ${result.reason}`);
   }
 }
 
@@ -148,9 +149,16 @@ if (readmeUpdate.updated) {
   const rel = path.relative(projectRoot, readmePath);
   console.log(`Planned README badge: ${rel}`);
 } else if (readmeUpdate.reason === "missing") {
-  console.warn(`README file not found at: ${readmePath}`);
+  failures.push(`README file not found at: ${readmePath}`);
 } else if (readmeUpdate.reason === "badge-missing") {
-  console.warn(`Version badge not found in ${readmePath}; skipped README update.`);
+  failures.push(`Version badge not found in ${readmePath}; skipping README update.`);
+}
+
+if (failures.length > 0) {
+  for (const message of failures) {
+    console.error(message);
+  }
+  process.exit(1);
 }
 
 for (const update of plannedWrites) {

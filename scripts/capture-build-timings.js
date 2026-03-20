@@ -163,7 +163,7 @@ function main() {
   const updated =
     sectionIndex >= 0
       ? (() => {
-          const nextHeadingSearch = existing.indexOf("\n#", sectionIndex + sectionHeader.length);
+          const nextHeadingSearch = existing.indexOf(`\n${sectionHeader}`, sectionIndex + sectionHeader.length);
           const endOfOldSection = nextHeadingSearch >= 0 ? nextHeadingSearch : existing.length;
           return `${existing.slice(0, sectionIndex)}${sectionText}${existing.slice(endOfOldSection)}`;
         })()
