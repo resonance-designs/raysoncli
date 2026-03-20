@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.1.1] - 2026-03-20
+
+### Changed
+
+- Switched version bumping from PowerShell (`scripts/bump-version.ps1`) to JavaScript (`scripts/bump-version.js`).
+- Updated `scripts/bump-version.js` to include `package.json` and `docs-site/package.json` as targets.
+
+### Added
+
+- Added Go-focused tooling scripts:
+  - `scripts/find-bin.js`
+  - `scripts/print-handoff.js`
+  - `scripts/capture-build-metrics.js`
+  - `scripts/capture-build-timings.js`
+  - `scripts/check-build-matrix.js`
+  - `scripts/deploy-docs.js`
+- Added Go-oriented root tooling integration in `package.json` (`rayson:*`, `version:sync`, `docs:*` script commands).
+- Added Docusaurus documentation site scaffolding in `docs-site` with npm-prefixed helper scripts for install/dev/build/serve.
+
 ## [0.1.0] - 2026-03-19
 
 ### Added

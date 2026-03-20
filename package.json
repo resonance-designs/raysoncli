@@ -1,0 +1,23 @@
+{
+  "name": "raysoncli",
+  "version": "0.1.1",
+  "license": "MIT",
+  "private": true,
+  "description": "Project tooling for docs and scripting",
+  "repository": "https://github.com/resonance-designs/rayson",
+  "scripts": {
+    "rayson:build": "go build -o ./bin/rayson ./cmd/rayson",
+    "rayson:license-audit": "go mod verify",
+    "rayson:dev-docs": "node scripts/deploy-docs.js",
+    "rayson:check-matrix": "node scripts/check-build-matrix.js",
+    "rayson:metrics": "node scripts/capture-build-metrics.js --profile default",
+    "rayson:timings": "node scripts/capture-build-timings.js --profile default",
+    "rayson:handoff": "node scripts/print-handoff.js",
+    "rayson:where": "node scripts/find-bin.js",
+    "version:sync": "node scripts/bump-version.js",
+    "docs:install": "npm --prefix docs-site install",
+    "docs:dev": "npm --prefix docs-site run start",
+    "docs:build": "npm --prefix docs-site run build",
+    "docs:serve": "npm --prefix docs-site run serve"
+  }
+}
