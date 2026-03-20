@@ -15,7 +15,7 @@
     "rayson:handoff": "node scripts/print-handoff.js",
     "rayson:where": "node scripts/find-bin.js",
     "version:sync": "node scripts/bump-version.js",
-    "release:dist": "node scripts/release.js --snapshot --skip-publish",
+    "release:dist": "node scripts/release.js --from-version --skip-publish",
     "release": "node scripts/release.js",
     "docs:install": "npm --prefix docs-site install",
     "docs:dev": "npm --prefix docs-site run start",

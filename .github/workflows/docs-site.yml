@@ -20,6 +20,8 @@ concurrency:
 jobs:
   docs:
     runs-on: ubuntu-latest
+    env:
+      GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -40,7 +42,7 @@ jobs:
       - name: Build docs
         run: npm --prefix docs-site run build
 
-      - name: Setup Pages
+      - name: Setup Pages with GitHub token
         id: configure_pages
         uses: actions/configure-pages@v5
         continue-on-error: true
@@ -48,8 +50,16 @@ jobs:
           enablement: true
           token: ${{ github.token }}
 
+      - name: Setup Pages with repository token
+        id: configure_pages_pat
+        if: steps.configure_pages.outcome != 'success' && env.GH_PAGES_TOKEN != ''
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+          token: ${{ env.GH_PAGES_TOKEN }}
+
       - name: Manual Pages setup required
-        if: steps.configure_pages.outcome != 'success'
+        if: steps.configure_pages.outcome != 'success' && steps.configure_pages_pat.outcome != 'success'
         run: |
           echo "GitHub Pages could not be configured with available credentials."
           echo "Please enable Pages for the repository and ensure the workflow token has Pages write access."
