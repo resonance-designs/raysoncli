@@ -7,8 +7,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  # pages/id-token are not needed for direct gh-pages branch deployment, keeping only contents.
+  contents: read
+  pages: write
+  id-token: write
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -19,6 +20,9 @@ concurrency:
 jobs:
   docs:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,10 +40,14 @@ jobs:
       - name: Build docs
         run: npm --prefix docs-site run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload docs artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs-site/build
-          publish_branch: gh-pages
-          force_orphan: true
+          path: docs-site/build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
