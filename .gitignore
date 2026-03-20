@@ -6,3 +6,5 @@ docs-site/build/
 docs-site/.docusaurus/
 
 bin/
+
+scripts/**/*.git/

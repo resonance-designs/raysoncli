@@ -37,7 +37,9 @@ jobs:
           npm run version:sync -- "$VERSION"
 
       - name: Install GoReleaser
-        run: go install github.com/goreleaser/goreleaser/v2/goreleaser@latest
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          version: latest
 
       - name: Publish release artifacts
         run: npm run release

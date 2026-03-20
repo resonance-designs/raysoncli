@@ -32,7 +32,9 @@ jobs:
         run: npm ci
 
       - name: Install GoReleaser
-        run: go install github.com/goreleaser/goreleaser/v2/goreleaser@latest
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          version: latest
 
       - name: Build all platform artifacts
         run: npm run release:dist
