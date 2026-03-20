@@ -1,10 +1,22 @@
-
-docs-site/node_modules/
-
-docs-site/build/
-
-docs-site/.docusaurus/
-
+# Binaries
 bin/
 
-scripts/**/*.git/
+# Docusaurus
+docs-site/.cache-loader/
+docs-site/.docusaurus/
+docs-site/artifacts/
+docs-site/blog/
+docs-site/build/
+docs-site/data/
+docs-site/node_modules/
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

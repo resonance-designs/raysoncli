@@ -1,0 +1,8 @@
+{
+  "label": "Advanced",
+  "position": 5,
+  "collapsed": true,
+  "collapsible": true,
+  "className": "purple",
+  "description": "Architecture, dependency, and deployment details for RaySon"
+}

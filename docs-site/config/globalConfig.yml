@@ -1,0 +1,62 @@
+# Pre-build configuration settings
+preBuild:
+  # Project root directory, relative to docs-site/
+  projectRoot: ../
+  overwriteExistingFiles: true
+  copyMarkdownFromProjectRoot: false
+  generateNavBarForPages: false
+  defaultTheme: sunset
+  syncFileMappings:
+    - source: README.md
+      destination: src/pages/index.md
+      replacements:
+        - find: (LICENSE)
+          replace: (https://github.com/resonance-designs/rayson/blob/master/LICENSE)
+        - find: (docs/CONTRIBUTING.md)
+          replace: (https://github.com/resonance-designs/rayson/blob/master/docs/CONTRIBUTING.md)
+    - source: docs/CONTRIBUTING.md
+      destination: docs/contributing.md
+    - source: CHANGELOG.md
+      destination: docs/CHANGELOG.md
+
+site:
+  title: RaySon CLI Docs
+  tagline: Script-driven automation with a path to native Go commands
+  url: https://resonance-designs.github.io
+  baseUrl: /rayson/
+  organizationName: resonance-designs
+  projectName: rayson
+
+theme:
+  navbar:
+    title: RaySon CLI
+    logo:
+      alt: RaySon CLI
+      src: img/logo.svg
+
+features:
+  # Keep disabled until giscus repoId/categoryId are finalized.
+  giscusComments: false
+  gitHubLinks: true
+  navBarLinks: true
+  badges: true
+  themeSwitcher: false
+  textSizeSwitcher: true
+  readerMode: true
+  versionDisplay: true
+  cvPage: true
+  portfolioPage: true
+  portfolioPageAsIndex: false
+  projectsPage: true
+  dataCaching: true
+  adminUI: false
+
+# Configure HTTP sources (served by GitHub Pages build output)
+projectsPage:
+  source: https://resonance-designs.github.io/rayson/data/projects.json
+
+portfolioPage:
+  source: https://resonance-designs.github.io/rayson/data/portfolioData.json
+
+cvPage:
+  source: https://resonance-designs.github.io/rayson/data/cvData.json

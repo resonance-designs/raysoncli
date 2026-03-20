@@ -1,6 +1,6 @@
 # RaySon CLI
 
-[![Static Badge](https://img.shields.io/badge/Version-0.1.3-orange)](https://github.com/resonance-designs/rayson)
+[![Static Badge](https://img.shields.io/badge/Version-0.1.4-orange)](https://github.com/resonance-designs/rayson)
 [![Docs](https://img.shields.io/badge/Docs-GitHub%20Pages-2ea44f)](https://resonance-designs.github.io/rayson/)
 [![Build](https://img.shields.io/github/actions/workflow/status/resonance-designs/rayson/.github/workflows/release.yml?branch=release)](https://github.com/resonance-designs/rayson/actions/workflows/release.yml)
 [![Release](https://img.shields.io/github/v/release/resonance-designs/rayson)](https://github.com/resonance-designs/rayson/releases)
@@ -93,37 +93,4 @@ node scripts/bump-version.js 1.2.3
 
 ## Contributing
 
-RaySon is open to community and internal contributions. We keep this repo friendly to contributors by making onboarding straightforward, review expectations clear, and release work separate from everyday development.
-
-### Before you start
-
-- Use small, focused commits and keep PRs scoped to one feature or fix.
-- Match existing command naming and script conventions before introducing new behavior.
-- Prefer clear docs updates for any user-facing change.
-- Add or update tests where practical for changed logic.
-
-### Development workflow
-
-- Clone the repository and install dependencies:
-- Go 1.22+
-- Node.js 20+ (for repo scripts)
-- Bash (for release-related scripts)
-- `go mod tidy`
-- `go mod download`
-- `npm install`
-- Run these checks before proposing a PR:
-- `go test ./...`
-- `go run ./cmd/rayson --help`
-- Build a local binary and smoke-test it:
-- `go build -o bin/rayson ./cmd/rayson`
-- `./bin/rayson --help` (or `.\bin\\rayson.exe --help` on Windows)
-
-### Release and maintenance
-
-- Maintainers only: use `npm run version:sync` when preparing a release.
-- Maintainers only: use `npm run release:dist` to produce release artifacts.
-- `npm run version` prints current CLI version metadata.
-
-### Support and questions
-
-- For contribution questions or support requests, email [info@resonancedesigns.dev](mailto:info@resonancedesigns.dev).
+See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for full contribution guidelines, development workflow, release/maintenance process, and support contact details.
