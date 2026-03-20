@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -39,9 +39,28 @@ jobs:
         run: npm --prefix docs-site run build
 
       - name: Setup Pages
+        id: configure_pages_primary
+        uses: actions/configure-pages@v5
+        continue-on-error: true
+        with:
+          enablement: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Pages (fallback token)
+        id: configure_pages_fallback
+        if: steps.configure_pages_primary.outcome != 'success' && secrets.GH_PAGES_TOKEN != ''
         uses: actions/configure-pages@v5
         with:
           enablement: true
+          token: ${{ secrets.GH_PAGES_TOKEN }}
+
+      - name: Manual Pages setup required
+        if: steps.configure_pages_primary.outcome != 'success' && steps.configure_pages_fallback.outcome != 'success'
+        run: |
+          echo "GitHub Pages could not be configured with this workflow token."
+          echo "Enable Pages for this repo once in Settings > Pages with Source: GitHub Actions,"
+          echo "or add a repo secret named GH_PAGES_TOKEN with admin-level permissions."
+          exit 1
 
       - name: Upload docs artifact
         uses: actions/upload-pages-artifact@v3
