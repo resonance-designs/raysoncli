@@ -1,5 +1,46 @@
 # Changelog
 
+## [0.1.4] - 2026-03-20
+
+### Changed
+
+- Updated GitHub Actions workflows for current release/docs flow:
+  - modernized action references and Node 24 action-runtime opt-in
+  - corrected docs deployment to official Pages flow (`configure-pages` + `upload-pages-artifact` + `deploy-pages`)
+- Fixed docs-site dependency/tooling compatibility:
+  - replaced deprecated `react-beautiful-dnd` with `@hello-pangea/dnd`
+  - removed Linux-only `@rollup/rollup-linux-x64-gnu` hard dependency
+  - converted docs-site script commands from `pnpm` calls to npm-compatible equivalents
+- Tailored docs-site core configuration from template defaults to RaySon project metadata and repository links.
+- Switched docs-site default theme to `sunset` and disabled theme switching in navigation.
+- Moved README contributing content to `docs/CONTRIBUTING.md` and updated README to reference the dedicated guide.
+- Synced docs-site contributor/release content with the updated maintainer flow (including command-line and GitKraken release guidance).
+- Expanded `docs/GH_Pages_Setup_Guide.md` with full custom-domain setup instructions (DNS records, verification, HTTPS, and troubleshooting).
+- Added docs-site prebuild file-sync support with configurable source/destination mappings and optional text replacements.
+
+### Added
+
+- Added new RaySon-focused docs pages:
+  - `docs-site/docs/intro.md`
+  - `docs-site/docs/commands.md`
+  - `docs-site/docs/release-flow.md`
+  - `docs-site/docs/project-structure.md`
+  - `docs-site/docs/contributing.md`
+- Added a `/demos` index page at `docs-site/src/pages/demos/index.tsx` to eliminate dead demo-root links.
+- Added sync mappings in `docs-site/config/globalConfig.yml` to keep:
+  - `README.md` -> `docs-site/src/pages/index.md`
+  - `docs/CONTRIBUTING.md` -> `docs-site/docs/contributing.md`
+  - `CHANGELOG.md` -> `docs-site/docs/CHANGELOG.md`
+
+### Removed
+
+- Removed template-only docs content outside the retained RaySon docs scope:
+  - PRD pages
+  - `core-systems/*`
+  - `guides/*`
+  - `pull-requests/*`
+  - extra getting-started pages not used by RaySon (`examples`, `real-world-examples`)
+
 ## [0.1.3] - 2026-03-20
 
 ### Changed

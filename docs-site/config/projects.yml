@@ -1,0 +1,85 @@
+- category: CLI
+  subCategories:
+    - name: Core
+      projects:
+        - title: RaySon CLI
+          link: https://github.com/resonance-designs/rayson
+          lastModified: 2026-03-20 00:00:00+00:00
+          summary: >
+            RaySon is a Go-based automation CLI that centralizes script execution,
+            release workflows, and project tooling under one command surface.
+          tags:
+            - Go
+            - CLI
+            - Automation
+            - Developer Experience
+
+    - name: Command Packs
+      projects:
+        - title: Finance Automation
+          link: https://github.com/resonance-designs/rayson/tree/master/scripts/scripts/fin-automation
+          lastModified: 2026-03-20 00:00:00+00:00
+          summary: >
+            Shopping history and Smartsheet-oriented export automation integrated
+            into the RaySon command model.
+          tags:
+            - PowerShell
+            - Finance
+            - CSV
+            - Smartsheet
+
+        - title: WSL Startup
+          link: https://github.com/resonance-designs/rayson/tree/master/scripts/scripts/wsl-dev-startup
+          lastModified: 2026-03-20 00:00:00+00:00
+          summary: >
+            Local development startup orchestration for WSL workflows and
+            repeatable machine setup.
+          tags:
+            - Windows
+            - WSL
+            - PowerShell
+            - Developer Setup
+
+        - title: Mongo SSL Setup
+          link: https://github.com/resonance-designs/rayson/tree/master/scripts/scripts/setup-mongodb-ssl
+          lastModified: 2026-03-20 00:00:00+00:00
+          summary: >
+            MongoDB SSL bootstrap helper currently exposed through RaySon command
+            wrappers while native Go migration is in progress.
+          tags:
+            - MongoDB
+            - SSL
+            - Bash
+            - Infrastructure
+
+- category: Documentation
+  subCategories:
+    - name: Docs Site
+      projects:
+        - title: Docusaurus Docs for RaySon
+          link: https://resonance-designs.github.io/rayson/
+          lastModified: 2026-03-20 00:00:00+00:00
+          summary: >
+            Docusaurus site documenting commands, release workflow, and maintainer
+            operations for RaySon.
+          tags:
+            - Docusaurus
+            - GitHub Pages
+            - Documentation
+            - Maintainers
+
+- category: Release Engineering
+  subCategories:
+    - name: Build and Publish
+      projects:
+        - title: Multi-Platform Release Pipeline
+          link: https://github.com/resonance-designs/rayson/tree/master/.github/workflows
+          lastModified: 2026-03-20 00:00:00+00:00
+          summary: >
+            Branch-driven and tag-driven GitHub Actions workflows for artifacts,
+            release publishing, and docs deployment.
+          tags:
+            - GitHub Actions
+            - GoReleaser
+            - CI/CD
+            - Cross-Platform

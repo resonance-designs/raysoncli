@@ -1,47 +1,29 @@
 ---
+id: intro
+title: RaySon Overview
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+RaySon is a Go CLI that provides a single entrypoint for automation scripts and release tooling.
 
-Let's discover **Docusaurus in less than 5 minutes**.
+The current focus is Windows-first script orchestration with a gradual migration path to native Go commands for better cross-platform support.
 
-## Getting Started
+## What RaySon covers today
 
-Get started by **creating a new site**.
+- Finance export flows (shopping history and Smartsheet formatting)
+- WSL startup automation for local dev environments
+- MongoDB SSL setup helper command
+- Maintainer release workflows with GitHub Actions and GoReleaser
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Project goals
 
-### What you'll need
+- Keep common automation tasks consistent and discoverable under one CLI
+- Reduce hand-run script errors through commandized workflows
+- Provide a clear contributor and maintainer release process
+- Move high-value script logic into native Go implementations over time
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+## Next steps
 
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-To work with your newly created Docusaurus site, navigate to its directory.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- Start with [Quick Start](/docs/getting-started/quick-start)
+- Review [Command Reference](/docs/commands)
+- Follow [Release Flow](/docs/release-flow) for maintainer publishing

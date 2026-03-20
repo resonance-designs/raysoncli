@@ -1,0 +1,60 @@
+templateVariables:
+  demoUrl: "https://resonance-designs.github.io/rayson/"
+  docsUrl: "https://resonance-designs.github.io/rayson/"
+  user: "resonance-designs"
+  repository: "rayson"
+
+badgeCategories:
+  - key: buildRelease
+    title: Build and Release
+    icon: faCogs
+    badges:
+      - name: Release Branch Build
+        url: "https://github.com/{user}/{repository}/actions/workflows/release.yml/badge.svg?branch=release"
+        link: "https://github.com/{user}/{repository}/actions/workflows/release.yml"
+      - name: Tagged Publish
+        url: "https://github.com/{user}/{repository}/actions/workflows/publish.yml/badge.svg"
+        link: "https://github.com/{user}/{repository}/actions/workflows/publish.yml"
+      - name: Docs Site
+        url: "https://github.com/{user}/{repository}/actions/workflows/docs-site.yml/badge.svg?branch=release"
+        link: "https://github.com/{user}/{repository}/actions/workflows/docs-site.yml"
+      - name: GitHub Pages
+        url: "https://img.shields.io/badge/Docs-GitHub%20Pages-2ea44f"
+        link: "{docsUrl}"
+      - name: Changelog
+        url: "https://img.shields.io/badge/Changelog-Tracked-blue?logo=keepachangelog&logoColor=white"
+        link: "https://github.com/{user}/{repository}/blob/master/CHANGELOG.md"
+
+  - key: quality
+    title: Quality and Security
+    icon: faShieldAlt
+    badges:
+      - name: Go Version
+        url: "https://img.shields.io/badge/Go-1.22+-00ADD8"
+        link: "https://go.dev/dl/"
+      - name: License
+        url: "https://img.shields.io/github/license/{user}/{repository}?color=blue"
+        link: "https://github.com/{user}/{repository}/blob/master/LICENSE"
+      - name: Open Issues
+        url: "https://img.shields.io/github/issues/{user}/{repository}"
+        link: "https://github.com/{user}/{repository}/issues"
+      - name: Last Commit
+        url: "https://img.shields.io/github/last-commit/{user}/{repository}"
+        link: "https://github.com/{user}/{repository}/commits/master"
+
+  - key: community
+    title: Community
+    icon: faUsers
+    badges:
+      - name: Discussions
+        url: "https://img.shields.io/badge/Discussions-Join-blue?logo=github&logoColor=white"
+        link: "https://github.com/{user}/{repository}/discussions"
+      - name: Contributors
+        url: "https://img.shields.io/github/contributors/{user}/{repository}"
+        link: "https://github.com/{user}/{repository}/graphs/contributors"
+      - name: Stars
+        url: "https://img.shields.io/github/stars/{user}/{repository}?style=social"
+        link: "https://github.com/{user}/{repository}/stargazers"
+      - name: Forks
+        url: "https://img.shields.io/github/forks/{user}/{repository}?style=social"
+        link: "https://github.com/{user}/{repository}/network/members"
