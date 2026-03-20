@@ -5,7 +5,7 @@ import (
 	"runtime/debug"
 )
 
-const Version = "0.1.0"
+const Version = "0.1.1"
 
 var (
 	Commit    = "unknown"
@@ -39,4 +39,3 @@ func formatShortCommit() string {
 
 	return fmt.Sprintf("%s...", Commit[:7])
 }
-

@@ -1,6 +1,6 @@
 # RaySon CLI
 
-![Static Badge](https://img.shields.io/badge/Version-0.1.0-orange)
+![Static Badge](https://img.shields.io/badge/Version-0.1.1-orange)
 
 RaySon is a Go CLI that wraps your existing automation scripts into one workflow entrypoint.
 
@@ -66,9 +66,9 @@ Use the helper script to bump version:
 
 ```powershell
 # Auto-increment patch (x.y.Z -> x.y.(Z+1))
-.\scripts\bump-version.ps1
+node scripts/bump-version.js
 
 # Set a specific version
 # The script updates both cmd/version.go and the README badge in one step.
-.\scripts\bump-version.ps1 1.2.3
+node scripts/bump-version.js 1.2.3
 ```
