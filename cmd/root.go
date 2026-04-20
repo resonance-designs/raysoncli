@@ -68,6 +68,7 @@ func init() {
 	rootCmd.AddCommand(newFinanceCommand())
 	rootCmd.AddCommand(newWSLCommand())
 	rootCmd.AddCommand(newMongoCommand())
+	rootCmd.AddCommand(newDocManCommand())
 	rootCmd.AddCommand(newVersionCommand())
 }
 

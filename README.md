@@ -15,6 +15,9 @@ RaySon is a Go CLI that wraps your existing automation scripts into one workflow
 - `finance smartsheet`: runs `scripts/scripts/fin-automation/Export-ShoppingHistory-Smartsheet.ps1`
 - `wsl startup`: runs `scripts/scripts/wsl-dev-startup/WSL-Dev-Startup.ps1`
 - `mongo ssl-setup`: runs `scripts/scripts/setup-mongodb-ssl/setup-mongodb-ssl.sh`
+- `docman status`: checks local DocMan paths and common development ports
+- `docman start`: starts a DocMan backend, React frontend, or Vue frontend component
+- `docman stop`: stops the process listening on a DocMan development port
 
 ## Prerequisites
 
@@ -43,12 +46,62 @@ rayson finance export
 rayson finance smartsheet
 rayson wsl startup
 rayson mongo ssl-setup
+rayson docman status --json
+rayson docman start --component backend
+rayson docman start --component vue
+rayson docman stop --port 5174
 ```
+
+## DocMan Commands
+
+RaySonCLI is becoming the local command spine for the larger Resonance Designs app suite. The `docman` command group is the first suite-oriented command surface.
+
+Check the local DocMan repo and development ports:
+
+```powershell
+rayson docman status
+rayson docman status --json
+```
+
+The JSON mode is intended for Tauri and other automation callers.
+
+Start a DocMan component:
+
+```powershell
+rayson docman start --component backend
+rayson docman start --component react
+rayson docman start --component vue
+```
+
+By default, Windows starts each component in a detached terminal window. The default DocMan repo path is:
+
+```text
+C:\Dev\Projects\docman
+```
+
+Use `--repo` to point at another checkout:
+
+```powershell
+rayson docman --repo "D:\Projects\docman" status --json
+```
+
+Stop a process listening on a specific DocMan development port:
+
+```powershell
+rayson docman stop --port 5174
+```
+
+Default local ports:
+
+* Backend API: `5001`
+* Existing React frontend: `5173`
+* Vue/Vuetify migration frontend: `5174`
 
 ## Notes
 
 - Script root auto-detection is enabled; use `--script-root` if needed.
 - Current version is Windows-first and executes PowerShell/Bash scripts.
+- DocMan orchestration is Windows-first for process stop behavior.
 
 ## Versioning
 
@@ -85,6 +138,7 @@ node scripts/bump-version.js 1.2.3
 - Add a `rayson` install script for one-command bootstrap (`download or build + install`).
 - Add release notes and changelog generation from GoReleaser output.
 - Expand docs coverage for all command flows and automation scripts (including failure diagnostics).
+- Expand `docman` commands with dependency checks, log streaming, and JSON Lines task events for the future Tauri shell.
 - Translate the current PowerShell/Bash automation scripts to native Go where practical.
 - Add vulnerability checks for project lock files (`package-lock.json`, `Cargo.lock`, `go.mod`, `poetry.lock`, `requirements.txt`).
 - Add a configurable `linecount` command to count files/lines at configurable depth.

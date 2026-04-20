@@ -30,6 +30,7 @@
 - Added sync mappings in `docs-site/config/globalConfig.yml` to keep:
   - `README.md` -> `docs-site/src/pages/index.md`
   - `docs/CONTRIBUTING.md` -> `docs-site/docs/contributing.md`
+  - `CHANGELOG.md` -> `docs-site/docs/CHANGELOG.md`
 
 ### Removed
 

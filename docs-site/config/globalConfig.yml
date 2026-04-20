@@ -8,7 +8,7 @@ preBuild:
   defaultTheme: sunset
   syncFileMappings:
     - source: README.md
-      destination: src/pages/index.md
+      destination: docs/repo-readme.md
       replacements:
         - find: (LICENSE)
           replace: (https://github.com/resonance-designs/rayson/blob/master/LICENSE)
